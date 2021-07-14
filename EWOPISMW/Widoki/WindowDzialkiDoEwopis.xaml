@@ -29,7 +29,7 @@
             <TabItem Header="Działki do EWOPIS">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="65"></RowDefinition>
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <DockPanel>
@@ -37,9 +37,25 @@
                             <Label>[nr obrebu][tab][nr działki][tab][nr jednoski rejestrowej]</Label>
                             <Label>Przykład:5    1005/6   65</Label>
                         </StackPanel>
-
-                        <Button Width="250" Click="Button_ClickOdczytajParametry">Importuj parametry</Button>
-                        <Button Click="Button_Click" >Ładowanie do bazy</Button>
+                        <Border BorderThickness="1" BorderBrush="Black">
+                        <StackPanel Margin="5,0" >
+                            
+                            <CheckBox x:Name="checkBoxZmiana">
+                                Działki "do dodania" na zmianę
+                            </CheckBox>
+                            <Button x:Name="buttonPobierzZmiany" IsEnabled="{Binding ElementName=checkBoxZmiana, Path=IsChecked}" Click="ButtonPobierzZmiany_Click">
+                                Pobierz dostępne zmiany
+                            </Button>
+                                <ComboBox x:Name="listboxZmiany" Height="25" SelectedIndex="0">
+                                    
+                                </ComboBox>
+                        </StackPanel>
+                        </Border>
+                        <StackPanel>
+                            <Button Click="Button_ClickOdczytajParametry">Importuj parametry</Button>
+                            <Button Click="Button_Click" >Ładowanie do bazy</Button>
+                        </StackPanel>
+                     
                     </DockPanel>
                     <DataGrid Grid.Row="1" x:Name="dgParametry"></DataGrid>
                     <!--<DataGrid Grid.Row="1" x:Name="dgParametryZTxt">

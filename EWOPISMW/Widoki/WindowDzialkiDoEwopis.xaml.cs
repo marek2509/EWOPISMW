@@ -37,11 +37,6 @@ namespace EWOPISMW.Widoki
                 radioPort3051.IsChecked = true;
             }
 
-            ModyfikacjaSIDD.GenerujSIDD("10");
-            ModyfikacjaSIDD.GenerujSIDD("5.15");
-            ModyfikacjaSIDD.GenerujSIDD("10/5");
-            ModyfikacjaSIDD.GenerujSIDD("6.7/15");
-            
         }
 
         private void Button_ClickWykonajSQL(object sender, RoutedEventArgs e)
@@ -147,11 +142,12 @@ namespace EWOPISMW.Widoki
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+         
             using (var connection = new FbConnection(BazaFB.PobierzConnectionString()))
             {
                 connection.Open(); //UPDATE DZIALKI_N SET KW = CASE Id_Id  WHEN 660 THEN 'BI100000' else KW END where Id_Id IN(660)
                                    // FbCommand writeCommand = new FbCommand("INSERT INTO DZIALKA(rjdr, uid, id, idd, idobr, sidd, teryt, CTRL, status, osou, wrt, m2, dtu) VALUES((select id from jedn_rej jr where jr.ijr =@NrjednRej and ID_OBR =@nrObr), (select gen_id(UID_DZIALKA_G, 1)from rdb$database), (select gen_id(DZIALKI_G, 1)from rdb$database), @NrDz , @nrObr, '      .   ' || @NrDz || '/      ;      ', @TERYT, @NrDz, 0, 1, 0, 1, (select cast('NOW' as timestamp) from rdb$database ))", connection);
-                FbCommand writeCommand = new FbCommand("INSERT INTO DZIALKA(rjdr,uid,id, idd, idobr, sidd, teryt, CTRL, STATUS, dtu, wrt, m2) VALUES((select id from jedn_rej jr where jr.ijr= @rjdr and ID_OBR= @idobr), (select gen_id(UID_DZIALKA_G, 1)from rdb$database), (select gen_id(DZIALKI_G, 1)from rdb$database), @idd, @idobr, @sidd, @teryt, @CTRL, @STATUS, (select cast('NOW' as timestamp) from rdb$database), @wrt, @m2)", connection);
+                FbCommand writeCommand = new FbCommand("INSERT INTO DZIALKA(rjdr,uid,id, idd, idobr, sidd, teryt, CTRL, STATUS, dtu, wrt, m2, DOWU, ZMA) VALUES((select id from jedn_rej jr where jr.ijr= @rjdr and ID_OBR= @idobr and sti =0), (select gen_id(UID_DZIALKA_G, 1)from rdb$database), (select gen_id(DZIALKI_G, 1)from rdb$database), @idd, @idobr, @sidd, @teryt, @CTRL, @STATUS, (select cast('NOW' as timestamp) from rdb$database), @wrt, @m2, @DOWUZMA, @DOWUZMA)", connection);
                 writeCommand.CommandType = CommandType.Text;
                 int ileDzialekWczytano = 0;
                 try
@@ -169,10 +165,19 @@ namespace EWOPISMW.Widoki
                         writeCommand.Parameters.Add("@sidd", ModyfikacjaSIDD.GenerujSIDD(nrDz));
                         writeCommand.Parameters.Add("@teryt", "200509_2");
                         writeCommand.Parameters.Add("@CTRL", nrDz);
-                        int zero = 0;
-                        writeCommand.Parameters.Add("@STATUS", zero);
-                        writeCommand.Parameters.Add("@wrt", zero);
+                        int StatusZero = checkBoxZmiana.IsChecked == true ? 2 : 0;
+                        writeCommand.Parameters.Add("@STATUS", StatusZero);
+                        int wartZero = 0;
+                        writeCommand.Parameters.Add("@wrt", wartZero);
                         writeCommand.Parameters.Add("@m2", 1);
+
+                        int? idZmiany = Modele.ModelZmiana.pobierzIdDo(listboxZmiany.SelectedValue == null ? "" : listboxZmiany.SelectedValue.ToString()); 
+                        writeCommand.Parameters.Add("@DOWUZMA", idZmiany);
+
+                       
+
+
+
 
 
                         writeCommand.ExecuteNonQuery();
@@ -189,6 +194,24 @@ namespace EWOPISMW.Widoki
 
                 connection.Close();
                 MessageBox.Show("WŁALA. Załadowano działek: " + ileDzialekWczytano);
+            }
+        }
+        List<Modele.ModelZmiana> listaModelZmian = new List<Modele.ModelZmiana>();
+        private void ButtonPobierzZmiany_Click(object sender, RoutedEventArgs e)
+        {
+            listaModelZmian.Clear();
+          DataTable dt =  BazaFB.Get_DataTable("select id, lp || '/' || rok || ' ' || sygn  from zmiany where zam  is null or zam = ''");
+            BazaFB.Close_DB_Connection();
+            
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                listaModelZmian.Add(new Modele.ModelZmiana() { idZmiany = Convert.ToInt32(dt.Rows[i][0]), NazwaZmiany = dt.Rows[i][1].ToString() });
+            }
+            listboxZmiany.ItemsSource = listaModelZmian.Select(x => x.PobierzDoListy());
+           if(listaModelZmian.Select(x => x.PobierzDoListy()).ToList().Count == 0)
+            {
+                MessageBox.Show("Brak niezatwierdzonych zmian w programie EWOPIS.", "UWAGA!", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                checkBoxZmiana.IsChecked = false;
             }
         }
     }

@@ -68,6 +68,7 @@
     <Compile Include="Infrstruktura\ModyfikacjaSIDD.cs" />
     <Compile Include="Infrstruktura\Plik.cs" />
     <Compile Include="Modele\ModelDzialkiParametry.cs" />
+    <Compile Include="Modele\ModelZmiana.cs" />
     <Compile Include="Widoki\WindowDzialkiDoEwopis.xaml.cs">
       <DependentUpon>WindowDzialkiDoEwopis.xaml</DependentUpon>
     </Compile>

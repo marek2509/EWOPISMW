@@ -27,7 +27,6 @@ namespace EWOPISMW.Infrstruktura
                 SIDD.Append(".");
 
                 jesliJestArkuszTo1 = 1;
-
             }
             else
             {
@@ -50,7 +49,6 @@ namespace EWOPISMW.Infrstruktura
                     {
                         SIDD.Append("      ;      ");
                     }
-
                 }
                 else if (i == 1 + jesliJestArkuszTo1)
                 {
@@ -62,8 +60,6 @@ namespace EWOPISMW.Infrstruktura
                     SIDD.Append(dzialka[1 + jesliJestArkuszTo1]);
                     SIDD.Append(";      ");
                 }
-
-
             }
             Console.WriteLine(">" + SIDD.ToString() + "<");
             return SIDD.ToString();
