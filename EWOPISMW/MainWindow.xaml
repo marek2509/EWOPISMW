@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EWOPISMW"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="EWOPISMW" Height="450" Width="800" x:Name="windowMain">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Button Click="Button_Click">Import Działek do EWOPIS</Button>
+        </StackPanel>
         
     </Grid>
 </Window>

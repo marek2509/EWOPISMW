@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EWOPISMW.Widoki;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,14 @@ namespace EWOPISMW
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            WindowDzialkiDoEwopis windowDzialkiDoEwopis = new WindowDzialkiDoEwopis();
+            windowDzialkiDoEwopis.Show();
+            windowMain.Close();
         }
     }
 }

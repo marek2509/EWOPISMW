@@ -1,0 +1,100 @@
+﻿<Window x:Class="EWOPISMW.Widoki.WindowDzialkiDoEwopis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EWOPISMW.Widoki"
+        mc:Ignorable="d"
+        Title="EWOPISMW" Height="450" Width="800" x:Name="windowDzialkiDoEwopis">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <MenuItem Header="Baza">
+                <MenuItem Header="Ustaw ściężkę do EWOPIS.fdb" Click="MenuItem_ClickUstawSciezke"></MenuItem>
+
+            </MenuItem>
+            <MenuItem x:Name="polaczMenu" Header="Połącz" Click="MenuItem_ClickPolaczZBaza"></MenuItem>
+            <MenuItem Header="Port firebird">
+                <RadioButton GroupName="port" x:Name="radioPort3050" Checked="RadioPort3050_Checked">3050</RadioButton>
+                <RadioButton GroupName="port" x:Name="radioPort3051" Checked="RadioPort3051_Checked">3051</RadioButton>
+            </MenuItem>
+        </Menu>
+    
+     
+        <TabControl Grid.Row="2">
+            <TabItem Header="Działki do EWOPIS">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <StackPanel>
+                            <Label>[nr obrebu][tab][nr działki][tab][nr jednoski rejestrowej]</Label>
+                            <Label>Przykład:5    1005/6   65</Label>
+                        </StackPanel>
+
+                        <Button Width="250" Click="Button_ClickOdczytajParametry">Importuj parametry</Button>
+                        <Button Click="Button_Click" >Ładowanie do bazy</Button>
+                    </DockPanel>
+                    <DataGrid Grid.Row="1" x:Name="dgParametry"></DataGrid>
+                    <!--<DataGrid Grid.Row="1" x:Name="dgParametryZTxt">
+                        
+                    </DataGrid>-->
+                </Grid>
+            </TabItem>
+            <TabItem Header="SQL">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="22"></RowDefinition>
+                        <RowDefinition Height="180"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0">
+                        <Button Foreground="red" Click="Button_ClickWykonajSQL" Width="100">Wykonaj</Button>
+                    </DockPanel>
+                    <DockPanel  Grid.Row="1">
+                        <StackPanel Width="150">
+                            <ListBox Height="90" Margin="0" Padding="0" x:Name="listaTabel" SelectionChanged="ListaTabel_Selected" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                            </ListBox>
+                            <ListBox Height="90" Margin="0" Padding="0" x:Name="listaKolumn" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                            </ListBox>
+                        </StackPanel>
+
+                        <TextBox TextWrapping="Wrap"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MinHeight="50" x:Name="textBoxMonitor" ></TextBox>
+                    </DockPanel>
+
+
+                    <DataGrid Grid.Row="2" Height="auto" x:Name="dgMonitor" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"></DataGrid>
+                </Grid>
+            </TabItem>
+          
+            <TabItem Header="Parametry" Visibility="Hidden">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                        <ColumnDefinition Width="80"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox x:Name="listBoxParametry"></ListBox>
+
+                    <TextBox Grid.Column="1" Height="20" VerticalAlignment="Top" x:Name="textboxParametr"></TextBox>
+                    
+                    <StackPanel Grid.Column="2" HorizontalAlignment="Left">
+                        <Button  Height="20" Width="100" Click="Button_ClickDodajParametr">Dodaj Parametr</Button>
+                        <Button Grid.Column="1" Height="20" Width="100" Click="Button_ClickUsunWybranyParametr">Usuń Parametr</Button>
+                    </StackPanel>
+
+                </Grid>
+            
+            </TabItem>
+        </TabControl>
+       
+    </Grid>
+</Window>
