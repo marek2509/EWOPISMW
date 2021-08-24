@@ -123,5 +123,26 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\importDzialekDoEwopis.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\działka.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\LOGOEWM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\database2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\database3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\LOGO_DUŻY.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EWOPISMW.Widoki"
         mc:Ignorable="d"
-        Title="EWOPISMW" Height="450" Width="800" x:Name="windowDzialkiDoEwopis">
+        Title="EWOPISMW" Height="450" Width="800" x:Name="windowDzialkiDoEwopis" Icon="/img/LOGOEWM.png">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="625*"/>
+            <ColumnDefinition Width="167*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Menu>
+        <Menu Grid.ColumnSpan="2">
             <MenuItem Header="Baza">
                 <MenuItem Header="Ustaw ściężkę do EWOPIS.fdb" Click="MenuItem_ClickUstawSciezke"></MenuItem>
 
@@ -23,47 +27,74 @@
                 <RadioButton GroupName="port" x:Name="radioPort3051" Checked="RadioPort3051_Checked">3051</RadioButton>
             </MenuItem>
         </Menu>
-    
-     
-        <TabControl Grid.Row="2">
-            <TabItem Header="Działki do EWOPIS">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="65"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <DockPanel>
-                        <StackPanel>
-                            <Label>[nr obrebu][tab][nr działki][tab][nr jednoski rejestrowej]</Label>
-                            <Label>Przykład:5    1005/6   65</Label>
-                        </StackPanel>
-                        <Border BorderThickness="1" BorderBrush="Black">
-                        <StackPanel Margin="5,0" >
-                            
-                            <CheckBox x:Name="checkBoxZmiana">
-                                Działki "do dodania" na zmianę
-                            </CheckBox>
-                            <Button x:Name="buttonPobierzZmiany" IsEnabled="{Binding ElementName=checkBoxZmiana, Path=IsChecked}" Click="ButtonPobierzZmiany_Click">
-                                Pobierz dostępne zmiany
-                            </Button>
-                                <ComboBox x:Name="listboxZmiany" Height="25" SelectedIndex="0">
-                                    
-                                </ComboBox>
-                        </StackPanel>
-                        </Border>
-                        <StackPanel>
-                            <Button Click="Button_ClickOdczytajParametry">Importuj parametry</Button>
-                            <Button Click="Button_Click" >Ładowanie do bazy</Button>
-                        </StackPanel>
-                     
+
+
+        <StackPanel Margin="0,20" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <Border BorderBrush="DimGray" BorderThickness="2">
+                <DockPanel HorizontalAlignment="Center">
+                    <Label HorizontalAlignment="Center" FontSize="20" FontWeight="DemiBold">
+                        Ładowanie działek do Ewopisu
+                    </Label>
+                    <Image Source="/img/LOGOEWM.png" Height="30" Width="30"/>
+                </DockPanel>
+
+
+            </Border>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="31*"/>
+                    <ColumnDefinition Width="362*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="65"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.ColumnSpan="2">
+                    <StackPanel Width="250">
+                        <Button Click="Button_ClickOdczytajParametry" Margin="0,2,0,1" Cursor="Hand">
+                            <DockPanel>
+                                <Label>Importuj parametry</Label>
+                                <Image Source="/img/działka.png" Height="25"></Image>
+                            </DockPanel>
+                        </Button>
+                        <Button Click="Button_Click" Cursor="Hand">
+                            <DockPanel>
+                                <Label>Ładowanie do bazy</Label>
+                                <Image Source="/img/database3.png" Height="25"></Image>
+                            </DockPanel>
+
+                        </Button>
+                    </StackPanel>
+
+
+                    <StackPanel Margin="20,0,0,0">
+                        <CheckBox x:Name="checkBoxZmiana" Cursor="Hand">
+                            Działki "do dodania" na zmianę
+                        </CheckBox>
+                        <Button x:Name="buttonPobierzZmiany" IsEnabled="{Binding ElementName=checkBoxZmiana, Path=IsChecked}" Click="ButtonPobierzZmiany_Click">
+                            Pobierz dostępne zmiany
+                        </Button>
+                        <ComboBox x:Name="listboxZmiany" Height="25" SelectedIndex="0"></ComboBox>
+                    </StackPanel>
+
+
+                    <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Label>Jak powinien wyglądać format importu działek:</Label>
+                        <Button Cursor="Hand" Width="30" Height="30" Click="Button_Click_pokaz_format_importu">
+                            <Label>?</Label>
+                        </Button>
                     </DockPanel>
-                    <DataGrid Grid.Row="1" x:Name="dgParametry"></DataGrid>
-                    <!--<DataGrid Grid.Row="1" x:Name="dgParametryZTxt">
+
+                </DockPanel>
+                <DockPanel></DockPanel>
+                <DataGrid Grid.Row="1" x:Name="dgParametry" Grid.ColumnSpan="2" Padding="0, 5"></DataGrid>
+                <!--<DataGrid Grid.Row="1" x:Name="dgParametryZTxt">
                         
                     </DataGrid>-->
-                </Grid>
-            </TabItem>
-            <TabItem Header="SQL">
+            </Grid>
+
+            <!--<TabItem Header="SQL" Visibility="Hidden">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="22"></RowDefinition>
@@ -89,7 +120,7 @@
                     <DataGrid Grid.Row="2" Height="auto" x:Name="dgMonitor" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"></DataGrid>
                 </Grid>
             </TabItem>
-          
+
             <TabItem Header="Parametry" Visibility="Hidden">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -101,16 +132,16 @@
                     <ListBox x:Name="listBoxParametry"></ListBox>
 
                     <TextBox Grid.Column="1" Height="20" VerticalAlignment="Top" x:Name="textboxParametr"></TextBox>
-                    
+
                     <StackPanel Grid.Column="2" HorizontalAlignment="Left">
                         <Button  Height="20" Width="100" Click="Button_ClickDodajParametr">Dodaj Parametr</Button>
                         <Button Grid.Column="1" Height="20" Width="100" Click="Button_ClickUsunWybranyParametr">Usuń Parametr</Button>
                     </StackPanel>
 
                 </Grid>
-            
-            </TabItem>
-        </TabControl>
-       
+
+            </TabItem>-->
+        </StackPanel>
+
     </Grid>
 </Window>

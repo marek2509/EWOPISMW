@@ -5,16 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EWOPISMW"
         mc:Ignorable="d"
-        Title="EWOPISMW" Height="450" Width="800" x:Name="windowMain">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <StackPanel>
-            <Button Click="Button_Click">Import Działek do EWOPIS</Button>
-        </StackPanel>
+        Title="EWOPISMW" Height="450" Width="800" x:Name="windowMain" Icon="/img/LOGOEWM.png">
+
+        <DockPanel>
+        <Image Source="./img/LOGO_DUŻY.png" Height="300"/>
+        <!--<Button Click="Button_Click">Import Działek do EWOPIS</Button>-->
+        </DockPanel>
         
-    </Grid>
+
 </Window>

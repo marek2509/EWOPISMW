@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,13 +26,19 @@ namespace EWOPISMW
         {
             InitializeComponent();
 
+
+            goToNewWindow();
+
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        async void goToNewWindow()
         {
+            await Task.Delay(2000);
             WindowDzialkiDoEwopis windowDzialkiDoEwopis = new WindowDzialkiDoEwopis();
             windowDzialkiDoEwopis.Show();
             windowMain.Close();
-        }
+        } 
+
     }
 }
