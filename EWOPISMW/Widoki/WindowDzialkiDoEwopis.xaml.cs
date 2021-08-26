@@ -98,7 +98,7 @@ namespace EWOPISMW.Widoki
             dgParametry.ItemsSource = modelDzialkiParametry;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_base_load(object sender, RoutedEventArgs e)
         {
 
             using (var connection = new FbConnection(BazaFB.PobierzConnectionString()))
@@ -147,6 +147,7 @@ namespace EWOPISMW.Widoki
                 MessageBox.Show("WŁALA. Załadowano działek: " + ileDzialekWczytano);
             }
         }
+
         List<Modele.ModelZmiana> listaModelZmian = new List<Modele.ModelZmiana>();
         private void ButtonPobierzZmiany_Click(object sender, RoutedEventArgs e)
         {
@@ -169,6 +170,12 @@ namespace EWOPISMW.Widoki
         private void Button_Click_pokaz_format_importu(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Kolumna: 1[obręb], 2[działka], 3[jedn. rej.]\n jak w przykładzie poniżej: \n\n\t4\t1001\t1\n\t4\t1002\t2\n\t4\t1003\t3\n\t4\t1004\t4\n", "FORMAT IMPORTU",MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void CheckBoxZmiana_Checked(object sender, RoutedEventArgs e)
+        {
+            ButtonPobierzZmiany_Click(sender, e);
+            Console.WriteLine("checkbox");
         }
     }
 }

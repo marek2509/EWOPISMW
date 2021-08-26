@@ -8,7 +8,8 @@
         Title="EWOPISMW" Height="450" Width="800" x:Name="windowMain" Icon="/img/LOGOEWM.png">
 
         <DockPanel>
-        <Image Source="./img/LOGO_DUŻY.png" Height="300"/>
+            
+        <Image x:Name="imgLogo" Source="./img/LOGO_DUŻY1.png" Height="300"/>
         <!--<Button Click="Button_Click">Import Działek do EWOPIS</Button>-->
         </DockPanel>
         

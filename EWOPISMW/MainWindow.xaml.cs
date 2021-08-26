@@ -34,11 +34,19 @@ namespace EWOPISMW
 
         async void goToNewWindow()
         {
-            await Task.Delay(2000);
+            for (int i = 1; i < 10; i++)
+            {
+                BitmapImage bi3 = new BitmapImage();
+                bi3.BeginInit();
+                bi3.UriSource = new Uri("./img/LOGO_DUŻY" + i + ".png", UriKind.Relative);
+                bi3.EndInit();
+                imgLogo.Source = bi3;
+                await Task.Delay(100);
+            }
+        
             WindowDzialkiDoEwopis windowDzialkiDoEwopis = new WindowDzialkiDoEwopis();
             windowDzialkiDoEwopis.Show();
             windowMain.Close();
         } 
-
     }
 }

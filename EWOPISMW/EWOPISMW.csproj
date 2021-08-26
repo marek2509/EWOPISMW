@@ -144,5 +144,16 @@
   <ItemGroup>
     <Resource Include="img\LOGO_DUŻY.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\LOGO_DUŻY1.png" />
+    <Resource Include="img\LOGO_DUŻY2.png" />
+    <Resource Include="img\LOGO_DUŻY3.png" />
+    <Resource Include="img\LOGO_DUŻY4.png" />
+    <Resource Include="img\LOGO_DUŻY5.png" />
+    <Resource Include="img\LOGO_DUŻY6.png" />
+    <Resource Include="img\LOGO_DUŻY7.png" />
+    <Resource Include="img\LOGO_DUŻY8.png" />
+    <Resource Include="img\LOGO_DUŻY9.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
