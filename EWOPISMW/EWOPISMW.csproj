@@ -133,12 +133,6 @@
     <Resource Include="img\LOGOEWM.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="img\database.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="img\database2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="img\database3.png" />
   </ItemGroup>
   <ItemGroup>
