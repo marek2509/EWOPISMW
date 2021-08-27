@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EWOPISMW"
         mc:Ignorable="d"
-        Title="EWOPISMW" Height="450" Width="800" x:Name="windowMain" Icon="/img/LOGOEWM.png">
+        Title="EWOPISMW - inż. Marek Wojciechowicz" Height="450" Width="800" x:Name="windowMain" Icon="/img/LOGOEWM.png">
 
         <DockPanel>
             
